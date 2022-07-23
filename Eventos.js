@@ -100,7 +100,7 @@ let confirmacion =`<id="confirmar">Quiero este LEGO!`
 
 //Conversor de escalas
 function eCalcular(e) {
-    
+
     e.target.removeEventListener('click', eCalcular);
 
     const anchoReal = document.getElementById("ancho").value
@@ -122,7 +122,7 @@ document.getElementById("calcular").addEventListener('click', eCalcular);
 //Selección y calculadora de legos
 function eSelect(e){
     legoElegido = e.target.value;
-        
+
     let texto2=`${(mostrar(Lego, legoBasics, legoElegido))}`
     crearNodo("div4","div",`<p id="info"></p>`)
     let nodoinfo=document.getElementById("info")
@@ -156,7 +156,7 @@ function eOpciones(e){
 document.getElementById("elegirLego").addEventListener('click', eOpciones);
 
 function eConfirmar (e){
-    
+
     e.target.removeEventListener('click', eConfirmar)
 
     let lego = medida(Lego, legoBasics, legoElegido)
@@ -166,16 +166,25 @@ function eConfirmar (e){
 
     let totalLaterales = (legoAncho * legoAlto * 2) + (legoLargo * legoAlto * 2)
     let totalTecho = (medida2(Lego, legoBasics, legoElegido, nuevoLargo, divisionFloor) * legoAncho)
+    
+    let texto3=`Para construir tu modelo vas a necesitar:\n Aproximadamente ${totalLaterales} LEGO® para los laterales.\n Aproximadamente ${totalTecho} AZULEJOS LEGO® para el techo.\n\nTené en cuenta que para el suelo es necesario una BASE LEGO® y que si hay aberturas la cantidad de bloques será menor`
 
-    let texto3=`Para construir tu modelo vas a necesitar:\n· Aproximadamente ${totalLaterales} LEGO® para los laterales.\n· Aproximadamente ${totalTecho} AZULEJOS LEGO® para el techo.\n\nTené en cuenta que para el suelo es necesario una BASE LEGO® y que si hay aberturas la cantidad de bloques será menor`
-    crearNodo("div5","p",`<id="cantidadLegos">${texto3}`,"subtexto")
+    if (document.getElementById("cantidadLegos") == null){
+        crearNodo("div5","div",`<p id="cantidadLegos">${texto3}</p>`)
+        document.getElementById("cantidadLegos").className="subtexto"
+    }
+    else {
+        let nodoinfo=document.getElementById("cantidadLegos")
+        nodoinfo.innerHTML=texto3
+        nodoinfo.className="subtexto"
+    }
 
     console.log("El evento eConfirmar fue ejecutado")
 }
 
 //Selección de colores
 // setTimeout(()=>{
-    
+
 //     let miColor = prompt(`Elegí los colores de tu modelo LEGO®. Indicá el nombre de tu color deseado`)
 //     miColor = miColor.toLowerCase()
 
@@ -199,7 +208,7 @@ function eConfirmar (e){
 //             miColor = miColor.toLowerCase()
 //         }
 //     }
-    
+
 //     let texto4=`Listo. Añadimos el ${miColor.toUpperCase()} a tu lista de colores deseados`
 //     crearNodo("div3","p",texto4,"subtexto")
 
