@@ -91,7 +91,6 @@ const todosLosColores = [new Colores("Negro", "negro"), new Colores("Blanco", "b
 
 
 // Variables globales
-
 let nuevoAncho = 0
 let nuevoAlto = 0
 let nuevoLargo = 0
