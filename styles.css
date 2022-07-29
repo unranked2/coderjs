@@ -28,7 +28,7 @@ body {
     padding-bottom: 5%;
     height: 530px;
     box-shadow: 1px 2px 8px rgb(0, 0, 0);
-    
+   
 }
 
 
@@ -59,6 +59,15 @@ body {
     font-family: Ubuntu;
     font-weight: 400;
     font-size: 13px;
+    color: white;
+    padding-left: 25px;
+    padding-right: 18px;
+}
+
+.resultados2 {
+    font-family: Ubuntu;
+    font-weight: 400;
+    font-size: 11px;
     color: white;
     padding-left: 25px;
     padding-right: 18px;
@@ -121,6 +130,7 @@ input[type=number]::-webkit-outer-spin-button {
 #fin{
     visibility: hidden;
     --bs-btn-border-color: none !important;
+    margin-bottom: 60px;
 }
 
 hr{
@@ -132,7 +142,6 @@ hr{
 }
 
 #guardarOno{
-    margin-top: 80px;
     visibility: hidden;
 }
 
@@ -159,4 +168,8 @@ a:link, a:visited, a:active {
     font-weight: 600;
     font-size: 13px;
     color: #38D68E;
+}
+
+#boton4{
+    margin-top: 25px;
 }

@@ -70,27 +70,27 @@
         <div id="resultado2">
         </div>
 
-        <div class="row">
-          <div class="col" id="volver">
-            <span class="material-symbols-outlined" style="float:left; height: 50%;">chevron_left</span>
-            <p class="subtexto1"> Modificar datos</p>
-          </div>
-        </div>
-
-        <div class="row" id="boton2">
-          <div class="col" id="listo">
-            <button class="btn btn-primary" id="fin">Listo!</button>
-          </div>
-        </div>
-
-        <div id="paso3">
           <div class="row">
-            <div class="col" id="guardarOno">
-              <p class="subtexto1"  id="guardar" align="right">Guardar esta coleccción</p>
-              <p class="subtexto1"  id="refresh" align="right">Volver a empezar</p>
+            <div class="col" id="volver">
+              <span class="material-symbols-outlined" style="float:left; height: 50%;">chevron_left</span>
+              <p class="subtexto1"> Modificar datos</p>
             </div>
           </div>
-        </div>
+
+          <div class="row" id="boton2">
+            <div class="col" id="listo">
+              <button class="btn btn-primary" id="fin">Listo!</button>
+            </div>
+          </div>
+
+          <div id="paso3">
+            <div class="row">
+              <div class="col" id="guardarOno">
+                <p class="subtexto1"  id="guardar" align="right">Guardar esta coleccción</p>
+                <p class="subtexto1"  id="refresh" align="right">Volver a empezar</p>
+              </div>
+            </div>
+          </div>
 
 
       </div>
@@ -120,13 +120,13 @@
           <div class="row">
             <div class="col"><input id="descripcion" type="text" class="inputguardar" placeholder="Breve descripción"></div>
           </div>
-          <div class="row" id="selector2">
+          <!-- <div class="row" id="selector2">
             <div class="col">
               <select id="colorElegido" class="js-example-basic-single">
                 <option value="">Color de tu modelo</option>   
               </select>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="row" id="boton3">
           <div class="col">
@@ -139,10 +139,9 @@
 
     <div class="col-4 offset-1">
       <div class="caja" id="caja3">
-
+        
         <div class="row">
           <div class="col">
-            <p class="subtexto1"  id="vercoleccion3" align="right">Ver coleccción</p>
             <div id="divider"></div>
           </div>
         </div>
@@ -152,12 +151,18 @@
               <p class="texto" id="tituloColecc">Mi colección</p>
           </div>
         </div>
+
         <div class="row">
-          <div class="col">
-            <div id="modelox"></div>
+          <div class="col" id="coleccionados">
           </div>
         </div>
 
+        
+        <div class="row" id="boton4">
+          <div class="col">
+            <button class="btn btn-primary" id="recargar">Cargar otro modelo</button>
+          </div>
+        </div>
 
       </div>
     </div>
