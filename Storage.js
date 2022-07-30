@@ -97,14 +97,16 @@ function crearModeloInfo(){
 
     modelosStorage.unshift(miModelo)
     
-    localStorage.setItem(`${(modelosStorage[0]).nombref}`, JSON.stringify(modelosStorage[0]))
+    if ((miModelo.nombref)!==null){
+        localStorage.setItem(`miModelo`, JSON.stringify(modelosStorage))
+    }
 
     let values = [],
         keys = Object.keys(localStorage),
         i = keys.length;
 
     while ( i-- ) {
-        values.push( localStorage.getItem(keys[i]) );
+        values.push(localStorage.getItem(keys[i]) );
     }
 
     for (let i=0; i < values.length; i++){
