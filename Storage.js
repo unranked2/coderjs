@@ -1,3 +1,5 @@
+window.onload = allStorage()
+
 // Funciones
 function conversorEscala(metros) {
     let resultado = metros * 40
@@ -74,7 +76,38 @@ function crearNodo(padre, hijo, texto, clase) {
 
 function actualizar() {
     location.reload();
-    contador+=1
+}
+
+
+function allStorage() {
+
+    var values = [],
+        keys = Object.keys(localStorage),
+        i = keys.length;
+
+    while ( i-- ) {
+        values.push( localStorage.getItem(keys[i]) );
+    }
+
+    return values;
+}
+
+function crearModeloInfo(){
+    
+    let miModelo
+    miModelo = (new infoModelo ((sessionStorage.getItem("nombreprotvalue")),(sessionStorage.getItem("descripcionprotvalue")),(`Ancho: ${sessionStorage.getItem('anchovalue')}mts | Alto: ${sessionStorage.getItem('altovalue')}mts | Largo: ${sessionStorage.getItem('largovalue')}mts`),(sessionStorage.getItem('medidasdelmodelo')),(sessionStorage.getItem('datoslego')),(sessionStorage.getItem('infototal'))))
+
+    modelosStorage.unshift(miModelo)
+    
+    localStorage.setItem(`${(modelosStorage[0]).nombref}`, JSON.stringify(modelosStorage[0]))
+
+    for (let i=0; i < modelosStorage.length; i++){
+        localStorage.setItem(`${(modelosStorage[i]).nombref}`, JSON.stringify(modelosStorage[i]))
+        let auxData=`<em><br>${(modelosStorage[i]).descrip}<br>${(modelosStorage[i]).medidasreales}</em><br><br>${(modelosStorage[i]).medidasescaladas}<br>${(modelosStorage[i]).legoausar}<br>${(modelosStorage[i]).infofinal}`
+        let auxTitulo= `${(modelosStorage[i]).nombref}`
+        crearNodo("coleccionados", "details", `<summary>${auxTitulo}</summary><p class="resultados2">${auxData}</p>`, "tituloMod")
+    }  
+    
 }
 
 // Funciones de eventos
@@ -95,9 +128,9 @@ function eCalcular() {
 
     }
 
-    localStorage.setItem('anchovalue',anchoReal);
-    localStorage.setItem('altovalue', altoReal);
-    localStorage.setItem('largovalue', largoReal);
+    sessionStorage.setItem('anchovalue',anchoReal);
+    sessionStorage.setItem('altovalue', altoReal);
+    sessionStorage.setItem('largovalue', largoReal);
 
     nuevoAncho = conversorEscala(anchoReal)
     nuevoAlto = conversorEscala(altoReal)
@@ -111,7 +144,7 @@ function eCalcular() {
     let nodoinfo = document.getElementById("resultCalcular")
     nodoinfo.innerHTML = texto1
 
-    localStorage.setItem('medidasdelmodelo', texto1);
+    sessionStorage.setItem('medidasdelmodelo', texto1);
 
     document.getElementById("opcLego").removeAttribute('disabled')
     console.log("El evento eCalcular fue ejecutado")
@@ -131,7 +164,7 @@ function eSelect(e) {
     document.getElementById("confirmar").removeAttribute('disabled')
     document.getElementById("confirmar").addEventListener('click', eConfirmar);
 
-    localStorage.setItem('datoslego', texto2);
+    sessionStorage.setItem('datoslego', texto2);
 
 }
 
@@ -157,7 +190,7 @@ function eConfirmar(e) {
 
     document.getElementById("fin").style.visibility = "visible";
 
-    localStorage.setItem('infototal', texto3);
+    sessionStorage.setItem('infototal', texto3);
 }
 
 function eVolver(e) {
@@ -173,7 +206,7 @@ function eVolver(e) {
 
     console.log("El evento eVolver fue ejecutado")
 
-    localStorage.clear();
+    sessionStorage.clear();
 }
 
 function eFinalizar(e) {
@@ -220,15 +253,8 @@ function eRegistrarModelo() {
     }
     document.getElementById("error").remove()
 
-    localStorage.setItem('nombreprotvalue', nombreProt);
-    localStorage.setItem('descripcionprotvalue', descripcionProt);
-
-    // let miColor=""
-    // const colorElegido = document.getElementById("colorElegido")
-    // colorElegido.addEventListener('change', (e) => {
-    //     miColor= e.target.value
-    //     localStorage.setItem('color', miColor)
-    // })
+    sessionStorage.setItem('nombreprotvalue', nombreProt);
+    sessionStorage.setItem('descripcionprotvalue', descripcionProt);
 
     document.getElementById("archiva").style.opacity = "40%";
     document.getElementById("inputs2").style.display = "none";
@@ -245,18 +271,14 @@ function eVerColec() {
     document.getElementById("caja1").style.display = "none";
     document.getElementById("caja2").style.display = "none";
     document.getElementById("caja3").style.display = "block";
+    
+    crearModeloInfo()
 
-    let textoModelo = `<em><br>${localStorage.getItem("descripcionprotvalue")}<br>Ancho: ${localStorage.getItem('anchovalue')}mts | Alto: ${localStorage.getItem('altovalue')}mts | Largo: ${localStorage.getItem('largovalue')}mts</em><br><br>${localStorage.getItem('medidasdelmodelo')}<br>${localStorage.getItem('datoslego')}<br>${localStorage.getItem('infototal')}`
-
-    crearNodo("coleccionados", "details", `<summary>${(localStorage.getItem("nombreprotvalue"))}</summary><p class="resultados2">${textoModelo}</p>`, "tituloMod")
-
-    //Resolver que no se sobreescriban los datos!
-
-    document.getElementById("recargar").addEventListener('click',eRepetir)
 }
 
 function eRepetir() {
-    location.reload(true);
+    location.reload(true);  
+    allStorage()
 }
 
 // Construcción de objetos y arrays
@@ -281,13 +303,24 @@ class Colores {
 
 const todosLosColores = [new Colores("Negro", "negro"), new Colores("Blanco", "blanco"), new Colores("Blanco", "transparente"), new Colores("Gris", "gris oscuro"), new Colores("Gris", "gris medio"), new Colores("Metal", "oro"), new Colores("Metal", "plata"), new Colores("Metal", "bronce"), new Colores("Azul", "azul marino"), new Colores("Azul", "azul oscuro"), new Colores("Azul", "petróleo"), new Colores("Azul", "celeste"), new Colores("Azul", "aqua"), new Colores("Rojo", "rojo"), new Colores("Rojo", "rojo oscuro"), new Colores("Rojo", "caoba"), new Colores("Rojo", "carmesí"), new Colores("Rojo", "rosa"), new Colores("Amarillo", "amarillo vibrante"), new Colores("Amarillo", "ocre"), new Colores("Amarillo", "narciso"), new Colores("Amarillo", "mostaza"), new Colores("Violeta", "violeta"), new Colores("Violeta", "lila"), new Colores("Violeta", "púrpura"), new Colores("Violeta", "magenta"), new Colores("Violeta", "lavanda"), new Colores("Verde", "verde"), new Colores("Verde", "verde claro"), new Colores("Verde", "verde oscuro"), new Colores("Verde", "lima"), new Colores("Verde", "oliva"), new Colores("Naranja", "naranja vibrante"), new Colores("Naranja", "coral"), new Colores("Marrón", "marrón"), new Colores("Marrón", "marrón oscuro"), new Colores("Marrón", "marrón claro"), new Colores("Marrón", "chocolate")]
 
+class infoModelo{
+    constructor(nombref, descrip, medidasreales, medidasescaladas, legoausar, infofinal) {
+        this.nombref = nombref
+        this.descrip = descrip
+        this.medidasreales = medidasreales
+        this.medidasescaladas = medidasescaladas
+        this.legoausar = legoausar
+        this.infofinal = infofinal
+    }
+}
 
 // Variables globales
 let nuevoAncho = 0
 let nuevoAlto = 0
 let nuevoLargo = 0
 let legoElegido = 0
-let contador = 0
+let modelosStorage = []
+
 
 //Conversor de escalas
 document.getElementById("calcular").addEventListener('click', eCalcular);
@@ -309,9 +342,6 @@ document.getElementById("guardar").addEventListener('click', eGuardar);
 
 //Registro de modelo
 document.getElementById("guardarProt").addEventListener('click', eRegistrarModelo);
-
-//Retorno
-document.getElementById("recargar").addEventListener('click',eRepetir)
 
 //Colores
 // let auxColores = []
