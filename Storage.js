@@ -11,7 +11,6 @@ function opciones(objeto, array) {
     for (objeto of array) {
         arrayOpciones.push(objeto.nombre)
     }
-    console.log("arrayOpciones", arrayOpciones)
     return (arrayOpciones.join(" / "))
 }
 
@@ -52,9 +51,6 @@ function medida2(objeto, array, lego, ancho, divisionFloor) {
         cantidadLargoTotal = cantidadLargo + (cantidadLargo - 1)
     }
 
-    console.log("cantidadLargo: ", cantidadLargo)
-    console.log("cantidadLargoTotal: ", cantidadLargoTotal)
-
     return cantidadLargoTotal
 }
 
@@ -75,20 +71,22 @@ function crearNodo(padre, hijo, texto, clase) {
 }
 
 function actualizar() {
-    location.reload();
+    sessionStorage.clear()
 }
 
 
 function allStorage() {
+    sessionStorage.clear()
 
-    var values = [],
+    let values = [],
         keys = Object.keys(localStorage),
         i = keys.length;
 
     while ( i-- ) {
         values.push( localStorage.getItem(keys[i]) );
     }
-
+    
+    console.log(values);
     return values;
 }
 
@@ -101,11 +99,21 @@ function crearModeloInfo(){
     
     localStorage.setItem(`${(modelosStorage[0]).nombref}`, JSON.stringify(modelosStorage[0]))
 
-    for (let i=0; i < modelosStorage.length; i++){
-        localStorage.setItem(`${(modelosStorage[i]).nombref}`, JSON.stringify(modelosStorage[i]))
-        let auxData=`<em><br>${(modelosStorage[i]).descrip}<br>${(modelosStorage[i]).medidasreales}</em><br><br>${(modelosStorage[i]).medidasescaladas}<br>${(modelosStorage[i]).legoausar}<br>${(modelosStorage[i]).infofinal}`
-        let auxTitulo= `${(modelosStorage[i]).nombref}`
-        crearNodo("coleccionados", "details", `<summary>${auxTitulo}</summary><p class="resultados2">${auxData}</p>`, "tituloMod")
+    let values = [],
+        keys = Object.keys(localStorage),
+        i = keys.length;
+
+    while ( i-- ) {
+        values.push( localStorage.getItem(keys[i]) );
+    }
+
+    for (let i=0; i < values.length; i++){
+        let modelito = JSON.parse(values[i])
+        if ((modelito.nombref)!==null){
+            let auxData=`<em><br>${modelito.descrip}<br>${modelito.medidasreales}</em><br><br>${modelito.medidasescaladas}<br>${modelito.legoausar}<br>${modelito.infofinal}`
+            let auxTitulo= `${modelito.nombref}`
+            crearNodo("coleccionados", "details", `<summary>${auxTitulo}</summary><p class="resultados2">${auxData}</p>`, "tituloMod")
+        }
     }  
     
 }
@@ -147,7 +155,6 @@ function eCalcular() {
     sessionStorage.setItem('medidasdelmodelo', texto1);
 
     document.getElementById("opcLego").removeAttribute('disabled')
-    console.log("El evento eCalcular fue ejecutado")
 }
 
 function eSelect(e) {
@@ -158,8 +165,6 @@ function eSelect(e) {
     crearNodo("selector1", "div", `<p id="info"></p>`, "resultados")
     let nodoinfo = document.getElementById("info")
     nodoinfo.innerHTML = texto2
-
-    console.log("El evento eSelect fue ejecutado")
 
     document.getElementById("confirmar").removeAttribute('disabled')
     document.getElementById("confirmar").addEventListener('click', eConfirmar);
@@ -186,27 +191,9 @@ function eConfirmar(e) {
     let nodoinfo = document.getElementById("resultElegir")
     nodoinfo.innerHTML = texto3
 
-    console.log("El evento eConfirmar fue ejecutado")
-
     document.getElementById("fin").style.visibility = "visible";
 
     sessionStorage.setItem('infototal', texto3);
-}
-
-function eVolver(e) {
-
-    e.target.removeEventListener('click', eVolver)
-
-    document.getElementById("volver").style.visibility = "hidden";
-
-    document.getElementById("paso1").style.display = "block";
-    document.getElementById("paso2").style.display = "block";
-    
-    document.getElementById("fin").style.visibility = "hidden";
-
-    console.log("El evento eVolver fue ejecutado")
-
-    sessionStorage.clear();
 }
 
 function eFinalizar(e) {
@@ -218,8 +205,6 @@ function eFinalizar(e) {
     crearNodo("resultado2", "div", `<p id="fc"><hr>Felicitaciones, ya podés armar tu modelo</p>`, "textofin")
 
     document.getElementById("volver").style.visibility = "hidden";
-
-    console.log("El evento eFinalizar fue ejecutado")
 
     setTimeout(() => {
         document.getElementById("guardarOno").style.visibility = "visible";
@@ -276,10 +261,6 @@ function eVerColec() {
 
 }
 
-function eRepetir() {
-    location.reload(true);  
-    allStorage()
-}
 
 // Construcción de objetos y arrays
 class Lego {
@@ -329,7 +310,7 @@ document.getElementById("calcular").addEventListener('click', eCalcular);
 document.getElementById("opcLego").addEventListener('change', eSelect)
 
 //Retorno
-document.getElementById("volver").addEventListener('click', eVolver);
+document.getElementById("volver").addEventListener('click', eRefresh);
 
 //Fin
 document.getElementById("fin").addEventListener('click', eFinalizar);
@@ -342,6 +323,11 @@ document.getElementById("guardar").addEventListener('click', eGuardar);
 
 //Registro de modelo
 document.getElementById("guardarProt").addEventListener('click', eRegistrarModelo);
+
+//
+document.getElementById("eliminar").onclick= () =>{
+    localStorage.clear()
+};
 
 //Colores
 // let auxColores = []
