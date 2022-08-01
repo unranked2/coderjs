@@ -76,10 +76,11 @@ function actualizar() {
 
 
 function allStorage() {
+    
     sessionStorage.clear()
 
-    let values = [],
-        keys = Object.keys(localStorage),
+    let values = []
+        keys = Object.keys(localStorage)
         i = keys.length;
 
     while ( i-- ) {
@@ -96,9 +97,10 @@ function crearModeloInfo(){
     miModelo = (new infoModelo ((sessionStorage.getItem("nombreprotvalue")),(sessionStorage.getItem("descripcionprotvalue")),(`Ancho: ${sessionStorage.getItem('anchovalue')}mts | Alto: ${sessionStorage.getItem('altovalue')}mts | Largo: ${sessionStorage.getItem('largovalue')}mts`),(sessionStorage.getItem('medidasdelmodelo')),(sessionStorage.getItem('datoslego')),(sessionStorage.getItem('infototal'))))
 
     modelosStorage.unshift(miModelo)
-    
+    clave=(sessionStorage.getItem("nombreprotvalue"))
+
     if ((miModelo.nombref)!==null){
-        localStorage.setItem(`miModelo`, JSON.stringify(modelosStorage))
+        localStorage.setItem(clave, JSON.stringify(modelosStorage[0]))
     }
 
     let values = [],
