@@ -1,4 +1,4 @@
-window.onload = allStorage()
+window.onload = inicio()
 
 // Funciones
 function conversorEscala(metros) {
@@ -76,19 +76,21 @@ function actualizar() {
 
 
 function allStorage() {
-    
-    sessionStorage.clear()
 
     let values = []
         keys = Object.keys(localStorage)
-        i = keys.length;
 
-    while ( i-- ) {
+    for (let i = 0; i < keys.length; i += 1){
         values.push( localStorage.getItem(keys[i]) );
     }
     
-    console.log(values);
+    console.log(values)
     return values;
+}
+
+function inicio() {
+    actualizar()
+    allStorage()
 }
 
 function crearModeloInfo(){
@@ -103,13 +105,7 @@ function crearModeloInfo(){
         localStorage.setItem(clave, JSON.stringify(modelosStorage[0]))
     }
 
-    let values = [],
-        keys = Object.keys(localStorage),
-        i = keys.length;
-
-    while ( i-- ) {
-        values.push(localStorage.getItem(keys[i]) );
-    }
+    let values= allStorage()
 
     for (let i=0; i < values.length; i++){
         let modelito = JSON.parse(values[i])
@@ -231,6 +227,19 @@ function eRegistrarModelo() {
     const nombreProt = document.getElementById("coleccion").value
     const descripcionProt = document.getElementById("descripcion").value
 
+    let values= allStorage()
+
+    for (let i=0; i < values.length; i++){
+        let modelito = JSON.parse(values[i])
+        while ((modelito.nombref)==nombreProt){
+            let texto2 = `Ya existe un modelo con ese nombre, por favor ingresá uno nuevo`
+            document.getElementById("error").innerHTML = texto2
+            document.getElementById("error").style.color = "orange";
+    
+            nombreProt = document.getElementById("coleccion").value
+        }
+    }
+
     while (((nombreProt.length) == '') || ((descripcionProt.length) == '')) {
         let texto1 = `Por favor ingrese nombre y descripción`
         document.getElementById("error").innerHTML = texto1
@@ -339,6 +348,5 @@ document.getElementById("eliminar").onclick= () =>{
 // cargarColores()
 
 //Coleccion
-document.getElementById("vercoleccion1").addEventListener('click', eVerColec);
-document.getElementById("vercoleccion2").addEventListener('click', eVerColec);
-
+document.getElementById("vercoleccion1").addEventListener('click', eVerColec)
+document.getElementById("vercoleccion2").addEventListener('click', eVerColec)
