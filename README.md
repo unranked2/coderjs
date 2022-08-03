@@ -5,3 +5,4 @@
 <a href="https://github.com/unranked2/coderjs/tree/DOM">5. Interactuando con DOM</a><br>
 <a href="https://github.com/unranked2/coderjs/tree/Eventos">6. Eventos</a><br>
 <a href="https://github.com/unranked2/coderjs/tree/Storage">7. Storage y JSON</a><br>
+<A HREF="https://github.com/unranked2/coderjs/tree/Operadores-avanzados"> 8.Operadores avanzados
