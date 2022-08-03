@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@200;300;400;500;600;700;800&display=swap');
+
+
+
+
+body {
+    background-image:url(https://www.lego.com/cdn/cs/set/assets/blt9c764bc2b5c637d6/Z7_Dino.jpg);
+    background-size: cover;
+}
+
+#divider {
+    width: 5rem;
+    border-top: solid 6px #38D68E;
+    height: 5px;
+    margin-top: 13px;
+    margin-bottom: 25px;
+}
+
+.caja {
+    margin-top:70px ;
+    color: white;
+    background-color: #363942;
+    border-radius: 35px;
+    padding:10%;
+    padding-bottom: 5%;
+    height: 530px;
+    box-shadow: 1px 2px 8px rgb(0, 0, 0);
+   
+}
+
+
+.texto {
+    font-family: Ubuntu;
+    font-weight: 400;
+    font-size: 15px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.subtexto1 {
+    font-family: Ubuntu;
+    font-weight: 400;
+    font-size: 12px;
+    color:#38D68E;
+}
+
+.textofin {
+    font-family: Ubuntu;
+    font-weight: 500;
+    font-size: 14px;
+    color:#38D68E;
+    padding-left: 25px;
+}
+
+.resultados {
+    font-family: Ubuntu;
+    font-weight: 400;
+    font-size: 13px;
+    color: white;
+    padding-left: 25px;
+    padding-right: 18px;
+}
+
+.resultados2 {
+    font-family: Ubuntu;
+    font-weight: 400;
+    font-size: 11px;
+    color: white;
+    padding-left: 25px;
+    padding-right: 18px;
+}
+
+.inputmedidas{
+    width: 100%;
+    opacity: 100%;
+    margin-bottom: 20px;
+}
+
+::placeholder {
+    color: rgb(128, 128, 129);
+    font-size: 13px;
+    font-style: Ubuntu;
+}
+
+.btn{
+    width: 100%;
+    margin-bottom: 20px;
+    height: 30px;
+}
+
+.btn-primary{
+    --bs-btn-focus-shadow-rgb: none !important;
+    font-size: 12px !important;
+}
+
+#opcLego, #colorElegido{
+    width: 100%;
+    color: black;
+    font-size: 13px;
+    font-style: Ubuntu;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.fixed-ratio-resize {
+    max-width: 25%;
+    height: auto;
+    width: auto\9;
+    margin-left:200px;
+}
+
+#volver, #elegircolor, #busquedacolor{
+    visibility: hidden;
+}
+
+.material-symbols-outlined{
+    font-size: 19px !important;
+    color:#38D68E !important;
+}
+
+#fin{
+    visibility: hidden;
+    --bs-btn-border-color: none !important;
+    margin-bottom: 60px;
+}
+
+hr{
+    margin-top: 8px;
+    color:#38D68E !important;
+    width: 85%;
+    border-top: 1px solid;
+    opacity: 1;
+}
+
+#guardarOno{
+    visibility: hidden;
+}
+
+#refresh{
+    margin-top: -10px;
+}
+
+a:link, a:visited, a:active {
+    text-decoration:none;
+}
+
+#caja2, #caja3, #auxcaja1, #auxcaja2, #auxcaja3{
+    display: none;
+}
+
+.inputguardar{
+    width: 100%;
+    opacity: 100%;
+    margin-bottom: 20px;
+}
+
+.tituloMod{
+    font-family: Ubuntu;
+    font-weight: 600;
+    font-size: 13px;
+    color: #38D68E;
+}
+
+#boton4{
+    margin-top: 25px;
+}
+
+#eliminar{
+    --bs-btn-bg: none !important;
+    --bs-btn-opacity: 40% !important;
+    color: rgb(174, 174, 174);
+    
+}
