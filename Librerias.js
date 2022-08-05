@@ -404,7 +404,7 @@ document.getElementById("eliminar").onclick= (e) =>{
             'success'
             )
             localStorage.clear()
-            location.href="8_OpAvanzados.html";
+            location.href="9_Librerias.html";
         }
         else{
             e.preventDefault()
