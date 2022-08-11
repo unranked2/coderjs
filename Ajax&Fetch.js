@@ -53,20 +53,6 @@ function medida2(objeto, array, lego, ancho, divisionFloor) {
     return cantidadLargoTotal
 }
 
-// function aDataAPI(ruta){
-//     let array=[]
-//     fetch(ruta)
-//     .then( (res) => res.json())
-//     .then( (objetos) => {
-        
-//         objetos.forEach((objeto) => {
-//             todosLosColores.push(objeto)
-//         })
-//     })
-//     return array
-// }
-
-
 function cargarColores() {
     for (let i in auxColores) {
         let textocolor = `<option value=${auxColores[i]}>${auxColores[i]}</option>`
