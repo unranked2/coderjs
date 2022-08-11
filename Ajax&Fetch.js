@@ -318,10 +318,9 @@ function eRegistrarModelo() {
         timer: 3500,
         confirmButtonColor: '#0b5ed7',
     })
-    
+ 
 
     document.getElementById("guardarProt").remove()
-    // crearNodo("boton3", "p", `<hr>Añadiste un nuevo modelo a tu colección!`, "textofin")
 
     crearNodo("boton3", "div", `<button class="btn btn-primary" id="vercoleccion3">Ver colección</button>`, "col")
     document.getElementById("vercoleccion3").addEventListener('click', eVerColec);
@@ -337,7 +336,6 @@ function eVerColec() {
 
 }
 
-
 // Construcción de objetos y arrays
 class Lego {
     constructor(id, nombre, ancho, largo, alto) {
@@ -350,8 +348,6 @@ class Lego {
 }
 
 const legoBasics = [new Lego(1, "Lego 2x1", 16, 8), new Lego(2, "Lego 2x2", 16, 16), new Lego(3, "Lego 3x2", 24, 16), new Lego(4, "Lego 4x2", 32, 16), new Lego(5, "Lego 6x2", 48, 16), new Lego(6, "Lego 8x2", 64, 16)]
-
-// const todosLosColores = aDataAPI('colores.json')
 
 class Colores {
     constructor(categoria, nombre) {
